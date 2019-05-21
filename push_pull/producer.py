@@ -9,5 +9,6 @@ def producer():
     for num in xrange(20000):
         work_message = { 'num' : num }
         zmq_socket.send_json(work_message)
+    print("Sending {}".format(num))
 
 producer()
