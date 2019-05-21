@@ -18,7 +18,7 @@ def producer():
     zmq_socket = context.socket(zmq.PUSH)
     zmq_socket.bind("tcp://129.118.107.227:5556")
     zmq_socket.send_json(data)
-    print("Sending data at time {}:{}".format(data[timestamp][4],data[timestamp][5]))
+    print("Sending data at time {}:{}".format(timelist[4],timelist[5]))
 
 #read the TPH data and save it in a time-stamped dictionary
 while True:

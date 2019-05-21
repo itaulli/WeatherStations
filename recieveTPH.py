@@ -14,6 +14,6 @@ def consumer():
     consumer_receiver.connect("tcp://129.118.107.227:5556")
 
     data = consumer_receiver.recv_json()
-    print("Recieved data from weather station {} at time {}:{}".format(data[idnum],data[timestamp][4],data[timestamp][5]))
+    print("Recieved data from weather station {} at time {}:{}".format(data['idnum'],data['timestamp'][4],data['timestamp'][5]))
     
 consumer()
