@@ -30,6 +30,8 @@ while True:
     #localtime[4] is minute (0-59)
     #localtime[5] is second (0-59)
     localtime = time.localtime(time.time())
+    #convert to a list so JSON can handle it
+    timelist = [localtime[0],localtime[1],localtime[2],localtime[3],localtime[4],localtime[5]]
     
     #get the weather info
     degrees = sensor.read_temperature()
@@ -37,7 +39,7 @@ while True:
     humidity = sensor.read_humidity()
     
     #save to a dictionary
-    data = {'idnum':weather_id, 'timestamp':localtime, 'temp':degrees, 'pressure':pascals, 'humidity':humidity}
+    data = {'idnum':weather_id, 'timestamp':timelist, 'temp':degrees, 'pressure':pascals, 'humidity':humidity}
     
     #send the data
     producer()
