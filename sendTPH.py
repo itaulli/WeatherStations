@@ -1,12 +1,25 @@
 import time
 import zmq
 from Adafruit_BME280 import *
+"""
+The reciever must already be running before the sender is started
+"""
 
 #setup the sensor
 sensor = BME280(t_mode=BME280_OSAMPLE_8, p_mode=BME280_OSAMPLE_8, h_mode=BME280_OSAMPLE_8)
 
 #identify the weather station
 weather_id = "first"
+
+#the function that sends data
+#takes ip address and port number as arguments
+#must already have created the data dictionary before calling producer()
+def producer(ip, port):
+    context = zmq.Context()
+    zmq_socket = context.socket(zmq.PUSH)
+    zmq_socket.bind("tcp://{}:{}".format(ip,port))
+    zmq_socket.send_json(data)
+    print("Sending data at time {}:{}".format(data[timestamp][4],data[timestamp][5]))
 
 #read the TPH data and save it in a time-stamped dictionary
 while True:
@@ -27,7 +40,8 @@ while True:
     #save to a dictionary
     data = {'id':weather_id, 'timestamp':localtime, 'temp':degrees, 'pressure':pascals, 'humidity':humidity}
     
-    print(data)
+    #send the data
+    producer(129.118.107.227,5556)
     
     #wait for 1 minute
     time.sleep(60)
