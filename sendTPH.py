@@ -12,12 +12,11 @@ sensor = BME280(t_mode=BME280_OSAMPLE_8, p_mode=BME280_OSAMPLE_8, h_mode=BME280_
 weather_id = "first"
 
 #the function that sends data
-#takes ip address and port number as arguments
 #must already have created the data dictionary before calling producer()
-def producer(ip, port):
+def producer():
     context = zmq.Context()
     zmq_socket = context.socket(zmq.PUSH)
-    zmq_socket.bind("tcp://{}:{}".format(ip,port))
+    zmq_socket.bind("tcp://129.118.107.227:5556")
     zmq_socket.send_json(data)
     print("Sending data at time {}:{}".format(data[timestamp][4],data[timestamp][5]))
 
@@ -33,15 +32,15 @@ while True:
     localtime = time.localtime(time.time())
     
     #get the weather info
-	degrees = sensor.read_temperature()
-	pascals = sensor.read_pressure()
-	humidity = sensor.read_humidity()
+    degrees = sensor.read_temperature()
+    pascals = sensor.read_pressure()
+    humidity = sensor.read_humidity()
     
     #save to a dictionary
-    data = {'id':weather_id, 'timestamp':localtime, 'temp':degrees, 'pressure':pascals, 'humidity':humidity}
+    data = {'idnum':weather_id, 'timestamp':localtime, 'temp':degrees, 'pressure':pascals, 'humidity':humidity}
     
     #send the data
-    producer(129.118.107.227,5556)
+    producer()
     
     #wait for 1 minute
     time.sleep(60)
