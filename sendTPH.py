@@ -9,7 +9,7 @@ The reciever must already be running before the sender is started
 sensor = BME280(t_mode=BME280_OSAMPLE_8, p_mode=BME280_OSAMPLE_8, h_mode=BME280_OSAMPLE_8)
 
 #identify the weather station
-weather_id = "first"
+weather_id = "apple"
 
 #the function that sends data
 #must already have created the data dictionary before calling producer()
