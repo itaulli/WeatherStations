@@ -24,7 +24,7 @@ def getparticles():
     
     output = [None]*12
     
-    for i in range(7):
+    for i in range(14):
         
         data=ser.readline()
         temp = data.split()
