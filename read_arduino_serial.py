@@ -27,9 +27,9 @@ def getparticles():
     for i in range(7):
         
         data=ser.readline()
+        temp = data.split()
         
-        if data[0].isdigit():
-            temp = data.split()
+        if temp.size()==9:
             count = int(temp[0])
             diam = float(temp[3])
             
