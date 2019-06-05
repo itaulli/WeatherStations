@@ -14,7 +14,7 @@ while True:
 		count = 0 
 """
 
-def getparticles()
+def getparticles():
     """
     returns a list
     [number of particles, diam, #, diam, #, diam, ...]
@@ -24,30 +24,31 @@ def getparticles()
     
     output = [None]*12
     
-    for(i in range(7)):
+    for i in range(7):
         
         data=ser.readline()
         
         if data[0].isdigit():
-            count = int(data[0])
-            diam = float(data[14:17])
+            temp = data.split()
+            count = int(temp[0])
+            diam = float(temp[3])
             
-            if diam==0.3
+            if diam==0.3:
                 output[0] = count
                 output[1] = diam
-            if diam==0.5
+            if diam==0.5:
                 output[2] = count
                 output[3] = diam
-            if diam==1.0
+            if diam==1.0:
                 output[4] = count
                 output[5] = diam
-            if diam==2.5
+            if diam==2.5:
                 output[6] = count
                 output[7] = diam
-            if diam==5.0
+            if diam==5.0:
                 output[8] = count
                 output[9] = diam
-            if diam==10.
+            if diam==10.:
                 output[10] = count
                 output[11] = diam
     
