@@ -17,8 +17,8 @@ while True:
 def getparticles():
     """
     returns a list
-    [number of particles, diam, #, diam, #, diam, ...]
-    number particles is number with diameter greater than diam per 0.1 liter
+    [#, diam, #, diam, #, diam]
+    # is number of particles with diameter greater than diam per 0.1 liter
     diam is in micrometers
     """
     
