@@ -19,6 +19,17 @@ def consumer():
     print("Recieved data from weather station {}".format(data['idnum'],))
     return data
 
+#function which connects to the database
+def create_connection(db_file):
+    """ create a database connection to a SQLite database """
+    try:
+        conn = sqlite3.connect(db_file)
+        return conn
+    except Error as e:
+        print(e)
+    
+    return None
+
 #function to add a TPH entry to the database
 def add_TPH(conn, TPH):
     """

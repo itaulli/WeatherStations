@@ -13,7 +13,7 @@ def producer():
     zmq_socket = context.socket(zmq.PUSH)
     zmq_socket.bind("tcp://129.118.107.227:5559")
     zmq_socket.send_json(data)
-    print("Sending data for time {}:{}:{}".format(timelist[3],timelist[4],timelist[5]))
+    print("Sending data")
 
 #function to get the particle counts
 def getparticles():
@@ -24,7 +24,7 @@ def getparticles():
     diam is in micrometers
     """
     
-    output = [None]*6
+    output = [10000]*6
     
     for i in range(14):
         
