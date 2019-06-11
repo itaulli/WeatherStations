@@ -14,6 +14,9 @@ while True:
 		count = 0 
 """
 
+def notNaN(num):
+    return num != 'nan'
+
 def getparticles():
     """
     returns a list
@@ -29,28 +32,29 @@ def getparticles():
         data=ser.readline()
         temp = data.split()
         
-        if len(temp)==9:
-            count = int(temp[0])
-            diam = float(temp[3])
+        if len(temp)==2:
+            if temp[0].isdigit() and notNan(temp[1]):
+                count = int(temp[0])
+                diam = float(temp[1])
             
-            if diam==0.3:
-                output[0] = count
-                output[1] = diam
-            if diam==0.5:
-                output[2] = count
-                output[3] = diam
-            if diam==1.0:
-                output[4] = count
-                output[5] = diam
-            if diam==2.5:
-                output[6] = count
-                output[7] = diam
-            if diam==5.0:
-                output[8] = count
-                output[9] = diam
-            if diam==10.:
-                output[10] = count
-                output[11] = diam
+                if diam==0.3:
+                    output[0] = count
+                    output[1] = diam
+                if diam==0.5:
+                    output[2] = count
+                    output[3] = diam
+                if diam==1.0:
+                    output[4] = count
+                    output[5] = diam
+                if diam==2.5:
+                    output[6] = count
+                    output[7] = diam
+                if diam==5.0:
+                    output[8] = count
+                    output[9] = diam
+                if diam==10.:
+                    output[10] = count
+                    output[11] = diam
     
     return output
 
