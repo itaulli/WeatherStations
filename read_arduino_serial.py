@@ -22,7 +22,7 @@ def getparticles():
     diam is in micrometers
     """
     
-    output = [None]*12
+    output = [10000]*12
     
     for i in range(14):
         
