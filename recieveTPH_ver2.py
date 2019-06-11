@@ -13,7 +13,7 @@ def consumer():
     context = zmq.Context()
     # recieve work
     consumer_receiver = context.socket(zmq.PULL)
-    consumer_receiver.connect("tcp://129.118.107.227:5559")
+    consumer_receiver.connect("tcp://129.118.107.227:5560")
 
     data = consumer_receiver.recv_json()
     print("Recieved data from weather station {}".format(data['idnum'],))
