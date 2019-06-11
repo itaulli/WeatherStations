@@ -1,7 +1,7 @@
 import serial
 import time
 
-ser=serial.Serial('/dev/ttyACM0',115200)
+ser=serial.Serial('/dev/ttyACM1',115200)
 
 """
 count=0
@@ -33,7 +33,7 @@ def getparticles():
         temp = data.split()
         
         if len(temp)==2:
-            if temp[0].isdigit() and notNan(temp[1]):
+            if temp[0].isdigit() and notNaN(temp[1]):
                 count = int(temp[0])
                 diam = float(temp[1])
             

@@ -11,9 +11,13 @@ The reciever must already be running before the sender is started
 def producer():
     context = zmq.Context()
     zmq_socket = context.socket(zmq.PUSH)
-    zmq_socket.bind("tcp://129.118.107.227:5559")
+    zmq_socket.bind("tcp://129.118.107.227:5560")
     zmq_socket.send_json(data)
     print("Sending data")
+
+#function for getparticles() to check for string 'nan'
+def notNaN(num):
+    return num != 'nan'
 
 #function to get the particle counts
 def getparticles():
@@ -24,29 +28,36 @@ def getparticles():
     diam is in micrometers
     """
     
-    output = [10000]*6
+    output = [10000]*12
     
     for i in range(14):
         
         data=ser.readline()
         temp = data.split()
         
-        if len(temp)==9:
-            count = int(temp[0])
-            diam = float(temp[3])
+        if len(temp)==2:
+            if temp[0].isdigit() and notNaN(temp[1]):
+                count = int(temp[0])
+                diam = float(temp[1])
             
-            if diam==0.3:
-                output[0] = count
-            if diam==0.5:
-                output[1] = count
-            if diam==1.0:
-                output[2] = count
-            if diam==2.5:
-                output[3] = count
-            if diam==5.0:
-                output[4] = count
-            if diam==10.:
-                output[5] = count
+                if diam==0.3:
+                    output[0] = count
+                    output[1] = diam
+                if diam==0.5:
+                    output[2] = count
+                    output[3] = diam
+                if diam==1.0:
+                    output[4] = count
+                    output[5] = diam
+                if diam==2.5:
+                    output[6] = count
+                    output[7] = diam
+                if diam==5.0:
+                    output[8] = count
+                    output[9] = diam
+                if diam==10.:
+                    output[10] = count
+                    output[11] = diam
     
     return output
 
@@ -61,7 +72,7 @@ weather_id = 106
 sensor = BME280(t_mode=BME280_OSAMPLE_8, p_mode=BME280_OSAMPLE_8, h_mode=BME280_OSAMPLE_8)
 
 #setup the PC sensor
-ser=serial.Serial('/dev/ttyACM0',115200)
+ser=serial.Serial('/dev/ttyACM1',115200)
 
 #make reports
 while True:
