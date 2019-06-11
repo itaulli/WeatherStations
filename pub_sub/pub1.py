@@ -10,11 +10,11 @@ if len(sys.argv) > 1:
 
 context = zmq.Context()
 socket = context.socket(zmq.PUB)
-socket.bind("tcp://129.118.107.231:{}".format(port))
+socket.bind("tcp://*:{}".format(port))
 
 while True:
     topic = 101
     messagedata = random.randrange(1,215) - 80
     print("{} {}".format(topic, messagedata))
-    socket.send("{} {}".format(topic, messagedata))
+    socket.send_string("{} {}".format(topic, messagedata))
     time.sleep(10)
