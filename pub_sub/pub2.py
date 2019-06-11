@@ -10,7 +10,7 @@ if len(sys.argv) > 1:
 
 context = zmq.Context()
 socket = context.socket(zmq.PUB)
-socket.bind("tcp://192.58.125.12:{}".format(port))
+socket.bind("tcp://localhost:{}".format(port))
 
 while True:
     topic = 202
