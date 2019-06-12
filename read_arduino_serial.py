@@ -3,17 +3,6 @@ import time
 
 ser=serial.Serial('/dev/ttyACM1',115200)
 
-"""
-count=0
-while True:
-	data=ser.readline()
-	print data[:-1]
-	count = count + 1
-	if count >= 9 : 
-		time.sleep(5)
-		count = 0 
-"""
-
 def notNaN(num):
     return num != 'nan'
 
@@ -26,14 +15,19 @@ def getparticles():
     """
     
     output = [10000]*12
+    diamlist = ['0.30','0.50','1.00','2.50','5.00','10.0']
     
     for i in range(14):
         
         data=ser.readline()
         temp = data.split()
+        print("i is {}".format(i))
+        print("raw temp is")
+        print(temp)
         
         if len(temp)==2:
-            if temp[0].isdigit() and notNaN(temp[1]):
+            if temp[0].isdigit() and (temp[1] in diamlist):
+                print("temp has passed")
                 count = int(temp[0])
                 diam = float(temp[1])
             
@@ -52,7 +46,7 @@ def getparticles():
                 if diam==5.0:
                     output[8] = count
                     output[9] = diam
-                if diam==10.:
+                if diam==10.0:
                     output[10] = count
                     output[11] = diam
     
@@ -61,5 +55,5 @@ def getparticles():
 while True:
     out = getparticles()
     print(out)
-    time.sleep(10)
+    time.sleep(5)
             
