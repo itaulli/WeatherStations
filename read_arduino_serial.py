@@ -62,5 +62,5 @@ def getparticles():
 while True:
     out = getparticles()
     print(out)
-    time.sleep(5)
+    time.sleep(1)
             
