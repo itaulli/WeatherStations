@@ -13,17 +13,18 @@ def consumer():
     context = zmq.Context()
     # recieve work
     consumer_receiver = context.socket(zmq.PULL)
-    consumer_receiver.connect("tcp://129.118.107.227:5560")
+    consumer_receiver.connect("tcp://129.118.107.227:5556")
 
     data = consumer_receiver.recv_json()
     print("Recieved data from weather station {}".format(data['idnum'],))
     return data
 
 #function which connects to the database
-def create_connection(db_file):
+def create_wal_connection(db_file):
     """ create a database connection to a SQLite database """
     try:
         conn = sqlite3.connect(db_file)
+        conn.cursor().execute("PRAGMA journal_mode=WAL")
         return conn
     except Error as e:
         print(e)

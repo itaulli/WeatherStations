@@ -11,7 +11,7 @@ The reciever must already be running before the sender is started
 def producer():
     context = zmq.Context()
     zmq_socket = context.socket(zmq.PUSH)
-    zmq_socket.bind("tcp://129.118.107.227:5560")
+    zmq_socket.bind("tcp://129.118.107.227:5556")
     zmq_socket.send_json(data)
     print("Sending data")
 
