@@ -41,17 +41,17 @@ def getparticles():
                 if temp[0].isdigit() and (temp[1] in diamlist):
                     count = int(temp[0])
             
-                    if diam=='0.30':
+                    if temp[1]=='0.30':
                         output[0] = count
-                    if diam=='0.50':
+                    if temp[1]=='0.50':
                         output[1] = count
-                    if diam=='1.00':
+                    if temp[1]=='1.00':
                         output[2] = count
-                    if diam=='2.50':
+                    if temp[1]=='2.50':
                         output[3] = count
-                    if diam=='5.00':
+                    if temp[1]=='5.00':
                         output[4] = count
-                    if diam=='10.00':
+                    if temp[1]=='10.00':
                         output[5] = count
         
         #check for success and retry
