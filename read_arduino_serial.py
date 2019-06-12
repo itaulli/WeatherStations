@@ -9,7 +9,7 @@ def notNaN(num):
 def getparticles():
     """
     returns a list
-    [#, diam, #, diam, #, diam]
+    [#, diam, ...]
     # is number of particles with diameter greater than diam per 0.1 liter
     diam is in micrometers
     """
@@ -21,7 +21,7 @@ def getparticles():
     #function will retry if filling the list fails
     for attempt in range(max_tries):
         
-        #this for loop fills the list
+        #this loop fills the list
         for i in range(14):
         
             data=ser.readline()
@@ -51,11 +51,10 @@ def getparticles():
                         output[10] = count
                         output[11] = diam
         
+        #check for success and retry
         if 'fail' in output:
-            print('failure')
             time.sleep(1)
         else:
-            print('success on attempt {}'.format(attempt))
             return output
             break
 
