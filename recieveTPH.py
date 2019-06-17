@@ -77,7 +77,7 @@ def push_data(data):
     pc100 = int(data['part'][5])
 
     # create a database connection
-    conn = create_connection(database)
+    conn = create_wal_connection(database)
     with conn:
         # create a new TPH entry
         TPHrow = (idnum, temp, press, hum);
